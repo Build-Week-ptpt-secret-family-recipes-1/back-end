@@ -48,7 +48,7 @@ router.post('/', mw, async (req, res, next) => {
 router.put('/:id', mw, async (req, res, next) => {
     try {
         const recipe = await Recipe.update(req.params.id, req.body)
-        res.json(req.body)
+        res.json(recipe)
     } catch (err) {
         next ({ status: 500, message: 'Error updating recipe', ...err })
     }
@@ -58,7 +58,7 @@ router.put('/:id', mw, async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
     try {
         const recipe = await Recipe.remove(req.params.id)
-        res.json({ message: `Recipe removed with the Id of ${req.params.id}` })
+        res.json({ message: `Recipe removed with the Id of ${recipe.id}` })
     } catch (err) {
         next({ status: 500, message: 'Error deleting recipe', ...err })
     }
