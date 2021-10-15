@@ -1,9 +1,13 @@
 const router = require('express').Router();
 const User = require('../users/usersModel');
-const {  } = require('../auth/');
-const bcrypt = require('bcrypt');
+const { jwtSecret } = require('../auth/secret');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mw = require('../recipes/middleware');
-const {  } = require('./')
+const { 
+    checkU
+ } = require('./auth-middleware');
 
+
+router.post('/register', mw)
 
