@@ -4,7 +4,8 @@ module.exports = {
     getAll,
     findBy,
     findById,
-    addUser
+    addUser,
+    removeUser
 }
 
 function getAll() {
@@ -23,4 +24,13 @@ async function addUser(newUser) {
     const [id] = await db('users').insert(newUser)
 
     return findById(id)
+}
+
+async function removeUser(id) {
+
+    const toBeRemoved = await findById(id)
+
+    await db('users').where({ userId: id}).delete()
+
+    return toBeRemoved
 }
