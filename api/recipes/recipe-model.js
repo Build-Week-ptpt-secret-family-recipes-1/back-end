@@ -32,6 +32,7 @@ const update = (id, changes) => {
 
 module.exports = {
     findAll,
+    findBy,
     findById,
     add,
     remove,

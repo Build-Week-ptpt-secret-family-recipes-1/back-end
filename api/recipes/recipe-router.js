@@ -12,11 +12,21 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+// Get by category
+router.get('/', async (req, res, next) => {
+    try {
+        const recipe = await Recipe.findBy()
+        res.json(recipe)
+    } catch (err) {
+        next({ status: 500, message: 'Error getting recipes', ...err })
+    }
+})
+
 // Get by Id
 router.get('/:id', async (req, res, next) => {
     try {
         const recipe = await Recipe(Recipe.findById(req.params.id))
-        res.json(plant)
+        res.json(recipe)
     } catch (err) {
         next({ status: 500, message: 'Error getting recipe!', ...err })
     }
