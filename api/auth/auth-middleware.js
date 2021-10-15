@@ -1,13 +1,13 @@
 const { jwtSecret } = require('../auth/secret');
 const jwt = require('jsonwebtoken');
-const User = require('../users/usersModel');
+// const User = require('../users/usersModel');
 const db = require('../../data/dbConfig');
 
 const restricted = (req, res, next) => {
     try {
         const token = req.headers.authorization.split('')[1]
         if (token) {
-            jwt.verify(token, secret.jwtSecret, (err, decodedToken) => {
+            jwt.verify(token, jwtSecret, (err, decodedToken) => {
                 if (err) {
                     res.status(401).json({ message: 'You done it now!' })
                 } else {
@@ -69,7 +69,7 @@ function requirePassword(req, res, next) {
     }
 }
 
-modules.exports = {
+module.exports = {
     restricted,
     checkUsernameIsFree,
     checkUsernameExists,
