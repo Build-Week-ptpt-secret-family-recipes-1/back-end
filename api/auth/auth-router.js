@@ -15,7 +15,7 @@ router.post('/register', mw, requirePassword, checkUsernameIsFree, async (req, r
     try {
         const hash = bcrypt.hashSync(credentials.password, 8)
         credentials.password = hash
-        let user = await User.add(credentials)
+        let user = await User.addUser(credentials)
         const token = tokenBuilder(user)
         res.status(201).json({ user, token })
     } catch (err) {
@@ -25,8 +25,10 @@ router.post('/register', mw, requirePassword, checkUsernameIsFree, async (req, r
 
 router.post('/login', mw, requirePassword, checkUsernameExists, async (req, res, next) => {
     const { username, password } = req.body
+
     try {
-        const [user] = await User.findBy({ username })
+        const user = await User.findBy( username )
+
         if (user && bcrypt.compareSync(password, user.password)) {
             const token = tokenBuilder(user)
             res.status(200).json({
@@ -36,7 +38,7 @@ router.post('/login', mw, requirePassword, checkUsernameExists, async (req, res,
             res.status(404).json({ message:  'Invalid login credentials' })
         }
     } catch (err) {
-        next({ status: 500, message:  'Error loggin in user', ...err })
+        next({ status: 500, message:  'Error logging in user', ...err })
     }
 })
 
