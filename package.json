@@ -4,9 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "server": "nodemon index.js",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "migrateh": "heroku run knex migrate:latest -a YOUR_HEROKU_APP_NAME",
+    "rollbackh": "heroku run knex migrate:rollback -a YOUR_HEROKU_APP_NAME",
+    "databaseh": "heroku pg:psql -a YOUR_HEROKU_APP_NAME",
+    "seedh": "heroku run knex seed:run -a YOUR_HEROKU_APP_NAME",
+    "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand",
+    "deploy": "git push heroku main",
     "resetdb": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "repository": {
@@ -32,6 +40,7 @@
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.11",
+    "pg": "^8.7.1",
     "sqlite3": "^5.0.2"
   }
 }
