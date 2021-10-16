@@ -28,6 +28,31 @@ router.post('/', async (req, res, next) => {
     }
 })
 
+router.get('/:id/recipes', async (req, res, next) => {
+    try {
+        const userRecipeList = await Users.getUserRecipes(req.params.id)
+
+        res.status(200).json(userRecipeList)
+
+    }
+    catch(err) {
+        next(err)
+    }
+})
+
+router.post('/:id/recipes', async (req, res, next) => {
+    try {
+        const user = req.params.id
+        const recipe = req.body
+
+        const addedRecipe = await Users.addUserRecipe(user, recipe)
+
+        res.json(addedRecipe)
+    } catch (err) {
+        next(err)
+    }
+})
+
 router.delete('/:id', async (req, res, next) => {
     try {
         const deletedUser = await Users.removeUser(req.params.id)

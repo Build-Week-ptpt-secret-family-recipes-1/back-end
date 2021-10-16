@@ -1,5 +1,22 @@
 # back-end
 
+## default users
+
+- Davey Crockett, username: dCrockett, password: 1234
+- Pecos Bill, username: pBill, password: 1234
+- John Henry, username: jHenry, password: 1234
+
+## Endpoints for register & login
+
+- [POST] /api/auth/register
+- [POST] /api/auth/login
+
+## Endpoints for user
+
+- [GET] /api/users/:id/recipes (show user's recipes)
+- [POST] /api/users/:id/recipes (add new recipe)
+
+## PVD
 Proposal
 What problem does your app solve?
 Lets us store our family recipes
