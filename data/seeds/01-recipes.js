@@ -2,7 +2,8 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   // return knex('recipes').truncate()
-  knex.raw('TRUNCATE TABLE recipes CASCADE')
+  return knex('recipes').del()
+  // knex.raw('TRUNCATE TABLE recipes CASCADE')
     .then(function () {
       // Inserts seed entries
       return knex('recipes').insert([
