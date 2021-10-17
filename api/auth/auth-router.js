@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const User = require('../users/usersModel');
+const Users = require('../users/usersModel');
 const bcrypt = require('bcryptjs');
 const mw = require('../recipes/middleware');
 const {
@@ -15,7 +15,7 @@ router.post('/register', mw, requirePassword, checkUsernameIsFree, async (req, r
     try {
         const hash = bcrypt.hashSync(credentials.password, 8)
         credentials.password = hash
-        let user = await User.addUser(credentials)
+        let user = await Users.addUser(credentials)
         const token = tokenBuilder(user)
         res.status(201).json({ user, token })
     } catch (err) {
@@ -27,7 +27,7 @@ router.post('/login', mw, requirePassword, checkUsernameExists, async (req, res,
     const { username, password } = req.body
 
     try {
-        const user = await User.findBy( username )
+        const user = await Users.findBy( username )
 
         if (user && bcrypt.compareSync(password, user.password)) {
             const token = tokenBuilder(user)

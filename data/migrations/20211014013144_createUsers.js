@@ -28,16 +28,16 @@ exports.up = function(knex) {
     .unsigned()
     .notNullable()
     .references('userId')
-    .inTable('users')
-    .onDelete('CASCADE')
-    .onUpdate('CASCADE'),
+    .inTable('users'),
+    // .onDelete('CASCADE')
+    // .onUpdate('CASCADE'),
     userRecipe.integer('recipeId')
         .unsigned()
         .notNullable()
         .references('recipeId')
         .inTable('recipes')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
+        // .onDelete('CASCADE')
+        // .onUpdate('CASCADE')
   })
     
 };
