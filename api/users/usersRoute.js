@@ -53,12 +53,12 @@ router.post('/:id/recipes', async (req, res, next) => {
     }
 })
 
-router.put('/:id/recipes', async (req, res, next) => {
+router.put('/:id/recipes/:recipeId', async (req, res, next) => {
     try {
-        const user = req.params.id
+        const recipeId = req.params.recipeId
         const recipe = req.body
 
-        const updatedRecipe = await Users.updateUserRecipe(recipe)
+        const updatedRecipe = await Users.updateUserRecipe(recipeId, recipe)
         res.status(200).json(updatedRecipe)
     } catch(err) {
         next(err)

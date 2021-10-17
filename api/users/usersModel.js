@@ -64,10 +64,9 @@ async function addUserRecipe(id, newRecipe) {
     return getUserRecipes(recipe_user_id)
 }
 
-async function updateUserRecipe(updatedRecipe) {
-    let { recipeId } = updatedRecipe
-
-    const [updated] = await db('recipes').where("recipeId", recipeId).update(updatedRecipe).returning('recipeId')
+async function updateUserRecipe(id, updatedRecipe) {
+  
+    const [updated] = await db('recipes').where("recipeId", id).update(updatedRecipe).returning('recipeId')
 
     return findRecipeById(updated)
 
