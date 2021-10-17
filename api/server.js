@@ -16,7 +16,7 @@ server.use('/api/users', restricted, usersRoute)
 
 server.use('*', (err, req, res, next) => { //eslint-disable-line
     res.status(err.status || 500).json({
-        bonus: "somethin ain't right",
+        bonus: "server - somethin ain't right",
         message: err.message,
         stack: err.stack,
     })
