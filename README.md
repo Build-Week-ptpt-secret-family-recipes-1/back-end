@@ -15,6 +15,7 @@
 
 - [GET] /api/users/:id/recipes (show user's recipes)
 - [POST] /api/users/:id/recipes (add new recipe)
+- [PUT] /api/users/:id/recipes/:recipeId (update existing recipe)
 
 ## PVD
 Proposal

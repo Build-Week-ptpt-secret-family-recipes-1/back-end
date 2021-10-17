@@ -10,14 +10,14 @@ const findBy = (type) => {
     return db('recipes').where({ type })
 }
 // Find recipe by ID
-const findById = (id) => {
-    return db('recipes').where({ id }).first()
+const findRecipeById = (id) => {
+    return db('recipes').where({ recipeId: id }).first()
 }
 
 // Add recipe to DB
 const add = async (recipe) => {
     const [id] = await db('recipes').returning('id').insert(recipe)
-    return findById(id)
+    return findRecipeById(id)
 }
 
 // Remove recipe
@@ -33,7 +33,7 @@ const update = (id, changes) => {
 module.exports = {
     findAll,
     findBy,
-    findById,
+    findRecipeById,
     add,
     remove,
     update
