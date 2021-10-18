@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Recipe = require('../recipes/recipe-model');
-const mw = require('./middleware');
+// const mw = require('./middleware');
 
 // Get all
 router.get('/', async (req, res, next) => {
@@ -34,34 +34,34 @@ router.get('/:id', async (req, res, next) => {
 
 // Add recipe
 
-router.post('/', mw, async (req, res, next) => {
-    try {
-        const recipe = await Recipe.add(req.body)
-        res.status(201).json(recipe)
-    } catch (err) {
-        next({ status: 500, message: 'Error creating recipe', ...err })
-    }
-})
+// router.post('/', mw, async (req, res, next) => {
+//     try {
+//         const recipe = await Recipe.add(req.body)
+//         res.status(201).json(recipe)
+//     } catch (err) {
+//         next({ status: 500, message: 'Error creating recipe', ...err })
+//     }
+// })
 
 // Update recipe
 
-router.put('/:id', mw, async (req, res, next) => {
-    try {
-        const recipe = await Recipe.update(req.params.id, req.body)
-        res.json(recipe)
-    } catch (err) {
-        next ({ status: 500, message: 'Error updating recipe', ...err })
-    }
-})
+// router.put('/:id', mw, async (req, res, next) => {
+//     try {
+//         const recipe = await Recipe.update(req.params.id, req.body)
+//         res.json(recipe)
+//     } catch (err) {
+//         next ({ status: 500, message: 'Error updating recipe', ...err })
+//     }
+// })
 
 // Delete recipe
-router.delete('/:id', async (req, res, next) => {
-    try {
-        const recipe = await Recipe.remove(req.params.id)
-        res.json({ message: `Recipe removed with the Id of ${recipe.id}` })
-    } catch (err) {
-        next({ status: 500, message: 'Error deleting recipe', ...err })
-    }
-})
+// router.delete('/:id', async (req, res, next) => {
+//     try {
+//         const recipe = await Recipe.remove(req.params.id)
+//         res.json({ message: `Recipe removed with the Id of ${recipe.id}` })
+//     } catch (err) {
+//         next({ status: 500, message: 'Error deleting recipe', ...err })
+//     }
+// })
 
 module.exports = router;
