@@ -2,9 +2,11 @@
 
 ## default users
 
-- Davey Crockett, username: dCrockett, password: 1234
-- Pecos Bill, username: pBill, password: 1234
-- John Henry, username: jHenry, password: 1234
+- Bruce Banner, username: Hulk, password: 1234
+
+# URL
+
+https://ptptsecretfamilyrecipes1.herokuapp.com
 
 ## Endpoints for register & login
 
