@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const Users = require('./usersModel')
+const Recipes = require('../recipes/recipe-model')
 
 router.get('/', (req, res, next) => {
     Users.getAll()
@@ -61,6 +62,16 @@ router.put('/:id/recipes/:recipeId', async (req, res, next) => {
         const updatedRecipe = await Users.updateUserRecipe(recipeId, recipe)
         res.status(200).json(updatedRecipe)
     } catch(err) {
+        next(err)
+    }
+})
+
+router.delete('/:id/recipes/:recipeId', async (req, res, next) => {
+    try {
+        const deletedRecipe = await Recipes.remove(req.params.recipeId)
+
+        res.status(200).json(deletedRecipe)
+    } catch (err) {
         next(err)
     }
 })
