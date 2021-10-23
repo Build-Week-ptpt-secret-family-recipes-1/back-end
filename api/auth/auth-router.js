@@ -32,6 +32,7 @@ router.post('/login', mw, requirePassword, checkUsernameExists, async (req, res,
         if (user && bcrypt.compareSync(password, user.password)) {
             const token = tokenBuilder(user)
             res.status(200).json({
+                user: {...user},
                 token: token
             })
         } else {
