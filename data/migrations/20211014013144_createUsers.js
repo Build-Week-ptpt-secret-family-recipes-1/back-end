@@ -15,10 +15,10 @@ exports.up = function(knex) {
       recipe.string('by').notNullable(),
       recipe.string('description').notNullable(),
       recipe.string('prep').notNullable(),
-      recipe.string('total').notNullable(),
-      recipe.string('servings').notNullable(),
-      recipe.string('yield').notNullable(),
-      recipe.string('nutritionInfo').notNullable(),
+      recipe.string('total'),
+      recipe.string('servings'),
+      recipe.string('yield'),
+      recipe.string('nutritionInfo'),
       recipe.string('ingredients').notNullable()
   })
 
